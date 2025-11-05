@@ -1,0 +1,27 @@
+
+<admissions>
+
+     <student>
+     <sl>23</sl>
+     <name>John Carter</name>
+     <admissionsDate>25/12/2015</admissionsDate>
+     </student>
+
+      <student>
+     <sl>29</sl>
+     <name>Bob Marshal</name>
+     <admissionsDate>13/01/1999</admissionsDate>
+     </student>
+    
+
+
+
+     <student>
+     <sl>35</sl>
+     <name>Clark kent</name>
+     <admissionsDate>17/06/2005</admissionsDate>
+     </student>
+
+
+</admissions>
+
