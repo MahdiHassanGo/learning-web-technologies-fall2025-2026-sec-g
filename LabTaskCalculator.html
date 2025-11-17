@@ -69,6 +69,11 @@
             setOperator("sub");
         }
 
+        function mul() {
+            setOperator("mul");
+        }
+
+
 
         function setOperator(op) {
             let value = display.value;
@@ -117,6 +122,9 @@
                     break;
                 case "sub":
                     res = firstNumber - secondNumber;
+                    break;
+                case "mul":
+                    res = firstNumber * secondNumber;
                     break;
 
                 default:
