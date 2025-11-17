@@ -65,6 +65,9 @@
             setOperator("add");
         }
 
+        function sub() {
+            setOperator("sub");
+        }
 
 
         function setOperator(op) {
@@ -112,7 +115,9 @@
                 case "add":
                     res = firstNumber + secondNumber;
                     break;
-
+                case "sub":
+                    res = firstNumber - secondNumber;
+                    break;
 
                 default:
                     return;
