@@ -73,7 +73,9 @@
             setOperator("mul");
         }
 
-
+        function div() {
+            setOperator("div");
+        }
 
         function setOperator(op) {
             let value = display.value;
@@ -126,7 +128,14 @@
                 case "mul":
                     res = firstNumber * secondNumber;
                     break;
-
+                case "div":
+                    if (secondNumber === 0) {
+                        cError.innerHTML = "Cannot divide by zero.";
+                        cError.style.color = "red";
+                        return;
+                    }
+                    res = firstNumber / secondNumber;
+                    break;
                 default:
                     return;
             }
