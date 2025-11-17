@@ -1,44 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Calculator</title>
 </head>
-<body>
-    <h1> Calculator </h1>
 
-    <input type="text" id="display" readonly>
+<body>
+    <h1>Calculator</h1>
+
+    <input type="text" id="display" readonly />
+    <p id="cError"></p>
 
     <br><br>
 
     <table>
         <tr>
-            <td><button type="button" onclick="appendToDisplay('7')">7</button></td>
-            <td><button type="button" onclick="appendToDisplay('8')">8</button></td>
-            <td><button type="button" onclick="appendToDisplay('9')">9</button></td>
-            <td><button type="button" onclick="appendToDisplay('+')">+</button></td>
+            <td><button type="button" onclick="pressNumber('7')">7</button></td>
+            <td><button type="button" onclick="pressNumber('8')">8</button></td>
+            <td><button type="button" onclick="pressNumber('9')">9</button></td>
+            <td><button type="button" onclick="add()">+</button></td>
         </tr>
         <tr>
-            <td><button type="button" onclick="appendToDisplay('4')">4</button></td>
-            <td><button type="button" onclick="appendToDisplay('5')">5</button></td>
-            <td><button type="button" onclick="appendToDisplay('6')">6</button></td>
-            <td><button type="button" onclick="appendToDisplay('-')">-</button></td>
+            <td><button type="button" onclick="pressNumber('4')">4</button></td>
+            <td><button type="button" onclick="pressNumber('5')">5</button></td>
+            <td><button type="button" onclick="pressNumber('6')">6</button></td>
+            <td><button type="button" onclick="sub()">-</button></td>
         </tr>
         <tr>
-            <td><button type="button" onclick="appendToDisplay('1')">1</button></td>
-            <td><button type="button" onclick="appendToDisplay('2')">2</button></td>
-            <td><button type="button" onclick="appendToDisplay('3')">3</button></td>
-            <td><button type="button" onclick="appendToDisplay('*')">*</button></td>
+            <td><button type="button" onclick="pressNumber('1')">1</button></td>
+            <td><button type="button" onclick="pressNumber('2')">2</button></td>
+            <td><button type="button" onclick="pressNumber('3')">3</button></td>
+            <td><button type="button" onclick="mul()">*</button></td>
         </tr>
         <tr>
-            <td><button type="button" onclick="appendToDisplay('0')">0</button></td>
-            <td><button type="button" onclick="clearDisplay()">C</button></td>
-            <td><button type="button" onclick="calculate()">=</button></td>
-            <td><button type="button" onclick="appendToDisplay('/')">/</button></td>
+            <td><button type="button" onclick="pressNumber('0')">0</button></td>
+            <td><button type="button" onclick="clearAll()">C</button></td>
+            <td><button type="button" onclick="equals()">=</button></td>
+            <td><button type="button" onclick="div()">/</button></td>
         </tr>
     </table>
 
     <p>Result: <span id="result"></span></p>
 
-   
+    <script>
+        let display = document.getElementById('display');
+        let cError = document.getElementById('cError');
+        let resultSpan = document.getElementById('result');
+
+        let firstNumber = null;
+        let currentOperator = "";
+        let waitingForSecond = false;
+
+        function pressNumber(digit) {
+            cError.innerHTML = "";
+            if (waitingForSecond === true) {
+                display.value = digit;
+                waitingForSecond = false;
+            } else {
+                display.value = display.value + digit;
+            }
+        }
+
+        function add() {
+            setOperator("add");
+        }
+
+
+
+        function setOperator(op) {
+            let value = display.value;
+            let trimmed = value.trim();
+            let errorMsg = "";
+
+            if (trimmed.length === 0) {
+                errorMsg = "Enter a number first.";
+            }
+
+            if (errorMsg !== "") {
+                cError.innerHTML = errorMsg;
+                cError.style.color = "red";
+            } else {
+                firstNumber = parseFloat(trimmed);
+                currentOperator = op;
+                waitingForSecond = true;
+                resultSpan.innerHTML = "";
+                cError.innerHTML = "";
+            }
+        }
+
+        function equals() {
+            let value = display.value;
+            let trimmed = value.trim();
+            let errorMsg = "";
+
+            if (currentOperator === "" || firstNumber === null) {
+                errorMsg = "Choose an operator first.";
+            } else if (trimmed.length === 0) {
+                errorMsg = "Enter second number.";
+            }
+
+            if (errorMsg !== "") {
+                cError.innerHTML = errorMsg;
+                cError.style.color = "red";
+                return;
+            }
+
+            let secondNumber = parseFloat(trimmed);
+            let res;
+
+            switch (currentOperator) {
+                case "add":
+                    res = firstNumber + secondNumber;
+                    break;
+
+
+                default:
+                    return;
+            }
+
+            display.value = res;
+            resultSpan.innerHTML = res;
+            cError.innerHTML = "";
+            firstNumber = res;
+            waitingForSecond = true;
+        }
+
+        function clearAll() {
+            display.value = "";
+            resultSpan.innerHTML = "";
+            cError.innerHTML = "";
+            firstNumber = null;
+            currentOperator = "";
+            waitingForSecond = false;
+        }
+    </script>
 </body>
+
 </html>
