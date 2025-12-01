@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Validation</title>
+</head>
+
+<body>
+    <form action="" id="form1" onsubmit="return submitForm(event)">
+        <h2>name</h2>
+        <input type="text" id="name">
+        <h2>Email</h2>
+        <input type="email" id="email">
+        <h2>Phone</h2>
+        <input type="text" id="phone">
+        <h2>Password</h2>
+        <input type="password" id="password">
+        <h2>Confirm Password</h2>
+        <input type="password" id="confirmPassword">
+        <h2>Gender</h2>
+        <select id="gender">
+            <option value="">-- Select Gender --</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <h2>Country</h2>
+        <select id="country">
+            <option value="">-- Select Country --</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="India">India</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Other">Other</option>
+        </select>
+        <br>
+
+        <input type="submit" id="submit">
+    </form>
+
+</body>
+<script>
+    // const form1 = document.getElementById('form1');
+
+
+    // form1.addEventListener('submit', function (event) {
+    //     event.preventDefault();
+    //     const name = document.getElementById('name').value;
+    //     const email = document.getElementById('email').value;
+    //     const phone = document.getElementById('phone').value;
+    //     const password = document.getElementById('password').value;
+    //     const confirmPassword = document.getElementById('confirmPassword').value;
+    //     const gender = document.getElementById('gender').value;
+    //     const country = document.getElementById('country').value;
+    //     let isValid = true;
+
+
+    //     if (name == "" || email == "" || phone == "" || password == "" || confirmPassword == "" || gender == "" || country == "") {
+    //         alert("All fields are required");
+    //         isValid = false;
+    //         return;
+    //     }
+    //     if (password.length < 8 || password != confirmPassword) {
+    //         alert("Password must be at least 8 characters long");
+    //         isValid = false;
+    //         return;
+    //     }
+    //     if (phone.length != 10 || isNaN(phone)) {
+    //         alert("Phone number must be 10 digits");
+    //         isValid = false;
+    //         return;
+    //     }
+
+    //     if (gender == "" || country == "") {
+    //         alert("Please select gender and country"); isValid = false;
+    //         return;
+    //     }
+
+
+    //     if (email.includes("@") == false || email.includes(".") == false) {
+    //         alert("Please enter a valid email address");
+    //         isValid = false;
+    //         return;
+    //     }
+    //     if (isValid) {
+    //         alert("Form submitted successfully!");
+    //         form1.reset();
+    //     }
+    // })
+
+    function submitForm(event) {
+        event.preventDefault();
+        const form1 = event.target;
+        const name = form1.name.value;
+        const email = form1.email.value;
+        const phone = form1.phone.value;
+        const password = form1.password.value;
+        const confirmPassword = form1.confirmPassword.value;
+        const gender = form1.gender.value;
+        const country = form1.country.value;
+
+
+
+        if (name == "" || email == "" || phone == "" || password == "" || confirmPassword == "" || gender == "" || country == "") {
+            alert("All fields are required");
+            return;
+        }
+
+
+        const table = document.createElement('table');
+        table.innerHTML = `
+    <tr>
+        <th>Field</th>
+        <th>Value</th>
+        <th>Phone</th>
+    <tr>
+        <tr>
+            <td>name</td>  
+             <td>${name}</td>  
+
+         </tr>
+
+         <tr>
+            <td>email</td>  
+             <td>${email}</td>  
+
+         </tr>
+             
+         <tr>
+            <td>name</td>  
+             <td>${name}</td>  
+
+         </tr>
+            
+    `
+        document.body.appendChild(table);
+    }
+
+</script>
+
+</html>

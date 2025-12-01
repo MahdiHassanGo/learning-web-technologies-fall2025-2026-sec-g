@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Validate</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;margin:40px}
+    #userData{margin-top:20px}
+    img{max-width:150px;display:block;margin-top:10px}
+    button{margin-top:15px;padding:6px 14px}
+  </style>
+</head>
+<body>
+  <h2>Validate Data</h2>
+  <div id="message"></div>
+  <div id="userData" style="display:none">
+    <p>Full Name: <span id="vName"></span></p>
+    <p>Username: <span id="vUser"></span></p>
+    <p>Gender: <span id="vGender"></span></p>
+    <p>Country: <span id="vCountry"></span></p>
+    <img id="vImg" alt="Profile Picture">
+    <button id="goDash">Go to Dashboard</button>
+  </div>
+
+  <script>
+    var fullName=sessionStorage.getItem("fullName")||""
+    var username=sessionStorage.getItem("username")||""
+    var password=sessionStorage.getItem("password")||""
+    var gender=sessionStorage.getItem("gender")||""
+    var country=sessionStorage.getItem("country")||""
+    var profilePic=sessionStorage.getItem("profilePic")||""
+    var msg=document.getElementById("message")
+    if(!fullName||!username||!password||!gender||!country||!profilePic){
+      msg.textContent="Enter Valid data"
+      var a=document.createElement("a")
+      a.href="signup.html"
+      a.textContent=" Back to Signup"
+      msg.appendChild(a)
+    }else{
+      msg.textContent="Data is valid."
+      document.getElementById("userData").style.display="block"
+      document.getElementById("vName").textContent=fullName
+      document.getElementById("vUser").textContent=username
+      document.getElementById("vGender").textContent=gender
+      document.getElementById("vCountry").textContent=country
+      document.getElementById("vImg").src=profilePic
+      document.getElementById("goDash").onclick=function(){
+        window.location.href="dashboard.html"
+      }
+    }
+  </script>
+</body>
+</html>

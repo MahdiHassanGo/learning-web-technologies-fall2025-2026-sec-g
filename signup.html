@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 40px
+        }
+
+        form {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px
+        }
+
+        label {
+            display: block;
+            margin-top: 10px
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 6px 14px
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Signup</h2>
+    <form id="signupForm">
+        <label>Full Name:
+            <input type="text" id="fullName">
+        </label>
+
+        <label>Username:
+            <input type="text" id="username">
+        </label>
+
+        <label>Password:
+            <input type="password" id="password">
+        </label>
+
+        <label>Gender:</label>
+        <label><input type="radio" name="gender" value="Male"> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" value="Other"> Other</label>
+
+        <label>Country:
+            <select id="country">
+                <option value="">Select Country</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+            </select>
+        </label>
+
+        <label>Profile Picture:
+            <input type="file" id="profilePic" accept="image/*">
+        </label>
+
+        <p id="error" style="color:red"></p>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function (e) {
+            e.preventDefault()
+            var fullName = document.getElementById("fullName").value.trim()
+            var username = document.getElementById("username").value.trim()
+            var password = document.getElementById("password").value.trim()
+            var genderEl = document.querySelector('input[name="gender"]:checked')
+            var gender = genderEl ? genderEl.value : ""
+            var country = document.getElementById("country").value
+            var fileInput = document.getElementById("profilePic")
+            var err = document.getElementById("error")
+            err.textContent = ""
+            function saveAndGo(picData) {
+                sessionStorage.setItem("fullName", fullName)
+                sessionStorage.setItem("username", username)
+                sessionStorage.setItem("password", password)
+                sessionStorage.setItem("gender", gender)
+                sessionStorage.setItem("country", country)
+                sessionStorage.setItem("profilePic", picData || "")
+                window.location.href = "validate.html"
+            }
+            if (fileInput.files.length > 0) {
+                var reader = new FileReader()
+                reader.onload = function (ev) { saveAndGo(ev.target.result) }
+                reader.readAsDataURL(fileInput.files[0])
+            } else {
+                saveAndGo("")
+            }
+        })
+    </script>
+</body>
+
+</html>

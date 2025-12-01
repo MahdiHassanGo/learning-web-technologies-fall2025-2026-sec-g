@@ -1,21 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+  <meta charset="UTF-8">
+  <title>Registration Form Validation</title>
+  <style>
+
+  </style>
 </head>
+
 <body>
-    <label for="fname">User Name</label>
-        <input type="text" id ="fname" name="fname"> <br>
-          <label for="fname">Email</label>
-        <input type="text" id ="fname" name="fname"> <br>
-          <label for="fname">Phone</label>
-        <input type="text" id ="fname" name="fname"> <br>
-          <label for="fname">Address</label>
-        <input type="text" id ="fname" name="fname"> <br>
-        <label for="fname">Password </label>
-        <input type="password" id ="fname" name="fname"> <br>
-         <input type="submit" value="SignUp">
+  <div class="container">
+    <h2>Registration Form</h2>
+    <form id="regForm" onsubmit="return validateForm()">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName">
+        <p class="error" id="fullNameError"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email">
+        <p class="error" id="emailError"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" placeholder="e.g. 017XXXXXXXX">
+        <p class="error" id="phoneError"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password">
+        <p class="error" id="passwordError"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword">
+        <p class="error" id="confirmPasswordError"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender">
+          <option value="">-- Select Gender --</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <p class="error" id="genderError"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <select id="country">
+          <option value="">-- Select Country --</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="India">India</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Other">Other</option>
+        </select>
+        <p class="error" id="countryError"></p>
+      </div>
+
+      <div class="form-group">
+        <div class="terms-row">
+          <input type="checkbox" id="terms">
+          <label for="terms">I agree to the Terms & Conditions</label>
+        </div>
+        <p class="error" id="termsError"></p>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    function setError(id, message) {
+      document.getElementById(id).textContent = message;
+    }
+
+    function clearErrors() {
+      setError("fullNameError", "");
+      setError("emailError", "");
+      setError("phoneError", "");
+      setError("passwordError", "");
+      setError("confirmPasswordError", "");
+      setError("genderError", "");
+      setError("countryError", "");
+      setError("termsError", "");
+    }
+
+    function validateForm() {
+      clearErrors();
+      let isValid = true;
+
+      let fullName = document.getElementById("fullName").value;
+      let email = document.getElementById("email").value;
+      let phone = document.getElementById("phone").value;
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("confirmPassword").value;
+      let gender = document.getElementById("gender").value;
+      let country = document.getElementById("country").value;
+      let terms = document.getElementById("terms").checked;
+
+      if (fullName === "") {
+        setError("fullNameError", "Full name is required");
+        isValid = false;
+      } else if (fullName.length < 3) {
+        setError("fullNameError", "Full name must be at least 3 characters");
+        isValid = false;
+      }
+
+      if (email === "") {
+        setError("emailError", "Email is required");
+        isValid = false;
+      } else {
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          setError("emailError", "Invalid email format");
+          isValid = false;
+        }
+      }
+
+      if (phone === "") {
+        setError("phoneError", "Phone number is required");
+        isValid = false;
+      } else {
+        let phonePattern = /^[0-9]{10,15}$/;
+        if (!phonePattern.test(phone)) {
+          setError("phoneError", "Phone must be 10-15 digits");
+          isValid = false;
+        }
+      }
+
+      if (password === "") {
+        setError("passwordError", "Password is required");
+        isValid = false;
+      } else if (password.length < 6) {
+        setError("passwordError", "Password must be at least 6 characters");
+        isValid = false;
+      }
+
+      if (confirmPassword === "") {
+        setError("confirmPasswordError", "Please confirm your password");
+        isValid = false;
+      } else if (password !== confirmPassword) {
+        setError("confirmPasswordError", "Passwords do not match");
+        isValid = false;
+      }
+
+      if (gender === "") {
+        setError("genderError", "Select your gender");
+        isValid = false;
+      }
+
+      if (country === "") {
+        setError("countryError", "Select your country");
+        isValid = false;
+      }
+
+      if (!terms) {
+        setError("termsError", "You must agree to the terms");
+        isValid = false;
+      }
+
+      if (isValid) {
+        alert("Registration successful!");
+      }
+
+      return isValid;
+    }
+  </script>
 </body>
+
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 40px
+        }
+
+        img {
+            max-width: 150px;
+            display: block;
+            margin-top: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <h2>User Dashboard</h2>
+    <div id="info"></div>
+
+    <script>
+        var fullName = sessionStorage.getItem("fullName")
+        var username = sessionStorage.getItem("username")
+        var gender = sessionStorage.getItem("gender")
+        var country = sessionStorage.getItem("country")
+        var profilePic = sessionStorage.getItem("profilePic")
+        var info = document.getElementById("info")
+        if (!fullName) {
+            info.textContent = "No user information found."
+        } else {
+            info.innerHTML =
+                "<p>Full Name: " + fullName + "</p>" +
+                "<p>Username: " + username + "</p>" +
+                "<p>Gender: " + gender + "</p>" +
+                "<p>Country: " + country + "</p>"
+            var img = document.createElement("img")
+            img.src = profilePic
+            info.appendChild(img)
+        }
+    </script>
+</body>
+
+</html>
