@@ -169,5 +169,57 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php endif; ?>
 
     <a href="largest_number_form.html">Back to form</a>
+
+
+    <!-- Task6 -->
+     <?php
+$numbers = array(10, 20, 30, 40, 50);
+$searchValue = null;
+$found = false;
+$position = -1;
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["search_value"])) {
+        $searchValue = (int) $_POST["search_value"];
+
+        // LOOP + IF-ELSE to search
+        for ($i = 0; $i < count($numbers); $i++) {
+            if ($numbers[$i] == $searchValue) {
+                $found = true;
+                $position = $i; // index position
+                break;
+            }
+        }
+    } else {
+        $error = "Please enter a value to search.";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Search Result</title>
+</head>
+<body>
+    <h2>Search Result</h2>
+
+    <p>Array: [<?php echo implode(", ", $numbers); ?>]</p>
+
+    <?php if ($error !== ""): ?>
+        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+    <?php else: ?>
+        <?php if ($found): ?>
+            <p>Value <?php echo htmlspecialchars($searchValue); ?> found at index <?php echo $position; ?>.</p>
+        <?php else: ?>
+            <p>Value <?php echo htmlspecialchars($searchValue); ?> not found in the array.</p>
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <a href="search_array_form.html">Back to form</a>
+</body>
+</html>
+
 </body>
 </html>
