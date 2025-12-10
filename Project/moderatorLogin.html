@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Moderator Login</title>
+</head>
+<body>
+    <form method="post" action="#" onsubmit="return validateModeratorLogin();">
+        <fieldset>
+            <legend>Moderator Signin</legend>
+            <table>
+                <tr>
+                    <td>Moderator Username</td>
+                    <td><input type="text" id="mod_login_username" name="username" value=""></td>
+                </tr>
+                <tr>
+                    <td>Moderator Password</td>
+                    <td><input type="password" id="mod_login_password" name="password" value=""></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Sign in"></td>
+                </tr>
+            </table>
+            <p id="modLoginError" style="color:red;"></p>
+        </fieldset>
+    </form>
+
+    <script src="modLoginValidation.js"></script>
+</body>
+</html>

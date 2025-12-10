@@ -1,48 +1,46 @@
 <?php
 
+    $name = "";
+    $id = 12;
+    $cgpa = 3.5;
 
-$name = "World";//string
-$id=12; // integer
-$cgpa=3.1; //float
+    // //$std = array(1, "alamin", 3.5);
+    // $std = [1, "alamin", 3.5];
+    // $stds =[
+    //     [1, "alamin", 3.5],
+    //     [2, "xyz", 1.5],
+    //     [3, "abc", 2.5]
+    // ];
+    // $stds[2][2];
 
+    // $std = ['id'=>1, "name"=>"alamin", "cgpa"=>3.4];
+    // $std['cgpa'];
+    // $stds= [
+    //     's1'=>['id'=>1, "name"=>"alamin", "cgpa"=>3.4],
+    //     's2'=>['id'=>2, "name"=>"abc", "cgpa"=>3.7],
+    //     's3'=>['id'=>3, "name"=>"xyz", "cgpa"=>2.4]
+    // ];
+    // $stds['s3']['cgpa'];
 
-$std = array (1,"asif",3.5);  //numeric array
-$std=[1,'asif',3.5]; //numeric array   
+    // function sum($a, $b){
+    //     return $a+$b;
+    // }
 
-$std =['id'=>1 ,'name'=>"asif",'cgpa'=>3.5]; //associative array
+    // sum(10,20);
 
-$std =['cgpa'];
-$std = [
-['id'=>1 ,'name'=>"asif",'cgpa'=>3.5],
-['id'=>2 ,'name'=>"jamal",'cgpa'=>3.8],
-['id'=>3 ,'name'=>"karim",'cgpa'=>3.2],
-    
-]//multidimensional array
-
-$std[2]['cgpa']; 
-
-$stds =[
-
-   's1'=> ['id'=>1 ,'name'=>"asif",'cgpa'=>3.5],
-    's2'=> ['id'=>2 ,'name'=>"jamal",'cgpa'=>3.8],
-   's3'=> ['id'=>3 ,'name'=>"karim",'cgpa'=>3.2],
-]
-
-
-
-function add($a, $b){
-    return $a + $b;
-}   
- add(2,3); 
-
-
- for ($i=0; $i < 10; $i++){
-    echo $i;
+    for($a=0;$a<10;$a++){
+        echo "<h1>alamin</h1>";   
     }
-    
 
-echo "Hello, ";  //print statement (faster than print)
+    // if(){
 
-print "Hello, "; //print statement (slower than echo)
-    
-    ?>
+    // }else{
+
+    // }
+
+    //echo "test"." abc";
+    //print('test', );
+    //$obj->
+?>
+
+<h2 style="color:red" onclick="alert('test')"> <?php if($name !==""){echo $name;}else{echo "null";}?> </h2>
