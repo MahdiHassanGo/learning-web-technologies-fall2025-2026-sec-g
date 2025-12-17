@@ -7,7 +7,7 @@ if(isset($_POST['submit'])){
     $password = $_POST['password'];
 
     if($username == ""){
-        echo "Username or password cannot be empty";
+        echo "Username or password cannot be empty" <br>;
     }else if(strlen($username) < 3){
         echo "Username must be at least 3 characters";
     }else{
@@ -24,3 +24,29 @@ if(isset($_POST['submit'])){
     header('location: login.html');
 }
 ?>
+
+
+<!-- task2 -->
+ <?php
+if(isset($_POST['submit'])){
+
+   
+    $email = $_POST['email'];
+    
+
+
+    if($email == "" ){
+        echo "All fields are required";
+    }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        echo "Invalid email format";
+    }else{
+        echo "Registration successful";
+     
+    }
+
+}else{
+    header('location: registration.html');
+}
+?>
+<!-- Task3 -->
+
